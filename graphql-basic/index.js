@@ -11,12 +11,16 @@ const schema = buildSchema( `
         getPersonalInfo(name:String, age:Int): String
         getBooks: [Book]
     }
+    
+    type Mutation {
+        addBook(id:Int, title:String, author:String): [Book]
+        updateBook(id:Int, title:String, author:String) : Book
+    }
 
     type Book {
         id: Int
         title: String
         author: String
-        date: String
     }
 `)
 
@@ -32,13 +36,36 @@ function getPersonalInfo(args) {
 function getBooks(){
     return books
 }
+function addBook({id,title,author}) {
+
+    //insertar el objeto en el arreglo de libros
+    books.push({id,title,author})
+    //retornar los libros
+    return books
+}
+function updateBook( { id, title, author } ) {
+
+   var bookFounded =  books.find( book => {
+       if ( book.id === id ) {
+            book.title = title ? title : book.title
+            book.author = author ? author : book.author
+        }
+        return book
+   } )
+
+    console.log( 'after find', bookFounded )
+    return bookFounded
+}
 
 const root = {
     //Métodos de schema / funciones que resolverán esos métodos
     getWelcome: getWelcomeEmployee,
     getAge: getAge,
     getPersonalInfo,
-    getBooks: getBooks}
+    getBooks: getBooks,
+    addBook,
+    updateBook
+}
 
 app.use( '/api/graphql', graphqlHTTP( {
     schema: schema,
