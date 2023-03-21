@@ -10,7 +10,7 @@ type Query {
 type Mutation {
   createEmployee(name:String,age:Int,position:String,code:String): [Employee]
   updateEmployee(_id: ID,name:String,age:Int,position:String,code:String): [Employee]
-  #Delete employee
+  deleteEmployee(_id:ID): [Employee]
   #Create User
 }
 
