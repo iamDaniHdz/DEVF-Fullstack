@@ -36,7 +36,7 @@ export const Home = () => {
 						<a href="#">
 							<img
 								className="rounded-t-lg"
-								src="https://images.pexels.com/photos/428364/pexels-photo-428364.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+								src="https://images.pexels.com/photos/3862615/pexels-photo-3862615.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 								alt
 							/>
 						</a>
