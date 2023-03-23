@@ -1,4 +1,5 @@
 import Employee from "../models/Employee.js";
+import User from "../models/User.js";
 
 const Mutation = {
 
@@ -15,6 +16,11 @@ const Mutation = {
         await Employee.findByIdAndDelete( _id );
         return await Employee.find();
 
+    },
+    async createUser( _, { email, password } ) {
+        const newUser = { email, password };
+        const user = await User.create( newUser );
+        return await User.find();
     },
 }
 
